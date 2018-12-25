@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+    <item
+        android:id="@+id/acticle"
+        android:icon="@drawable/notecategories"
+        android:title="文章"/>
+    <item
+        android:id="@+id/acticle2"
+        android:icon="@drawable/notecategories"
+        android:title="日记"/>
+    <item
+        android:id="@+id/acticle3"
+        android:icon="@drawable/notecategories"
+        android:title="摘抄"/>
+    <item
+        android:id="@+id/acticle4"
+        android:icon="@drawable/notecategories"
+        android:title="杂记"/>
+    <item
+        android:id="@+id/acticle5"
+        android:icon="@drawable/notecategories"
+        android:title="感想"/>
+    </group>
+</menu>
