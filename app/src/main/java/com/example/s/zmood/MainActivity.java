@@ -12,49 +12,41 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.s.zmood.adapter.NoteAdapter;
-import com.example.s.zmood.entity.NoteEntity;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private Fragment currentFragment = new Fragment();
     private DrawerLayout drawerLayout;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private MainFragment mainFragment;
-    private MainSecondFragment mainFragment1;
+    private Fragment mainFragment, mainFragment1,mainFragment2,mainFragment3,mainFragment4,mainFragment5;
+
     @Override//显示menu
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar,menu);
+        getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.add:
-                Toast.makeText(this,"you click add",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "you click add", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting:
-                Toast.makeText(this,"you click setting",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "you click setting", Toast.LENGTH_SHORT).show();
                 break;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-                default:
+            default:
         }
-        return  true;
+        return true;
     }
 
     @SuppressLint("ResourceAsColor")
@@ -65,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         WelcomeActivity.instance.finish();//关掉欢迎页
 
-        fragmentManager=getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         Toolbar toolbar = findViewById(R.id.activitymaintoolbar);
         setSupportActionBar(toolbar);
@@ -75,30 +67,28 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null)
-        {
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
-        fragmentTransaction.replace(R.id.fragmentmain,mainFragment);
+        fragmentTransaction.replace(R.id.fragmentmain, mainFragment);
         fragmentTransaction.commit();
         navigationView.setCheckedItem(R.id.acticle);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                fragmentTransaction = fragmentManager.beginTransaction();
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.acticle:
-                        removefrgment(fragmentTransaction);
-                        mainFragment = new MainFragment();
-                        fragmentTransaction.replace(R.id.fragmentmain,mainFragment);
-                        fragmentTransaction.commit();
+                        if (mainFragment == null) {
+                            mainFragment = new MainFragment();
+                        }
+                        showFragment(mainFragment);
                         break;
                     case R.id.acticle2:
-                        removefrgment(fragmentTransaction);
-                        mainFragment1 = new MainSecondFragment();
-                        fragmentTransaction.replace(R.id.fragmentmain,mainFragment1);
-                        fragmentTransaction.commit();
+                        if (mainFragment1 == null) {
+                            mainFragment1 = new MainSecondFragment();
+                        }
+                        showFragment(mainFragment1);
                         break;
                 }
                 drawerLayout.closeDrawers();
@@ -109,17 +99,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void removefrgment(FragmentTransaction fragmentTransaction)
-    {
-        if(mainFragment!=null)
-        {
-            fragmentTransaction.remove(mainFragment);
+    private void showFragment(Fragment fragment) {
+        if (currentFragment != fragment) {
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.hide(currentFragment);
+            currentFragment = fragment;
+            if (!fragment.isAdded()) {
+                fragmentTransaction.replace(R.id.fragmentmain, fragment).show(fragment).commit();
+            } else {
+                fragmentTransaction.show(fragment).commit();
+            }
         }
-
-        if(mainFragment1!=null)
-        {
-            fragmentTransaction.remove(mainFragment1);
-        }
-
     }
+    // TODO: 18-12-25 这里的本地是随机的 每次show一个页面就会随机数据
 }
