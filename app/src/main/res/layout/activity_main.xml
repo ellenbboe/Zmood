@@ -23,15 +23,10 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"/>
         </android.support.design.widget.AppBarLayout>
         <FrameLayout
-            android:id="@+id/fragmentmainLayout"
+            android:id="@+id/fragmentmain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <fragment
-                android:id="@+id/fragmentmain"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="com.example.s.zmood.MainFragment"/>
         </FrameLayout>
         </android.support.design.widget.CoordinatorLayout>
     <android.support.design.widget.NavigationView

@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+    private MainFragment mainFragment;
+    private MainSecondFragment mainFragment1;
     @Override//显示menu
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar,menu);
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         Toolbar toolbar = findViewById(R.id.activitymaintoolbar);
         setSupportActionBar(toolbar);
-        MainFragment mainFragment = new MainFragment();
+        mainFragment = new MainFragment();
 
         drawerLayout = findViewById(R.id.activitymaindrawerlayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -78,17 +80,46 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
-
+        fragmentTransaction.replace(R.id.fragmentmain,mainFragment);
+        fragmentTransaction.commit();
         navigationView.setCheckedItem(R.id.acticle);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                fragmentTransaction = fragmentManager.beginTransaction();
+                switch (item.getItemId()){
+                    case R.id.acticle:
+                        removefrgment(fragmentTransaction);
+                        mainFragment = new MainFragment();
+                        fragmentTransaction.replace(R.id.fragmentmain,mainFragment);
+                        fragmentTransaction.commit();
+                        break;
+                    case R.id.acticle2:
+                        removefrgment(fragmentTransaction);
+                        mainFragment1 = new MainSecondFragment();
+                        fragmentTransaction.replace(R.id.fragmentmain,mainFragment1);
+                        fragmentTransaction.commit();
+                        break;
+                }
                 drawerLayout.closeDrawers();
                 return true;
             }
         });
-        fragmentTransaction.replace(R.id.fragmentmain,mainFragment);
-        fragmentTransaction.commit();
+
+
+    }
+
+    private void removefrgment(FragmentTransaction fragmentTransaction)
+    {
+        if(mainFragment!=null)
+        {
+            fragmentTransaction.remove(mainFragment);
+        }
+
+        if(mainFragment1!=null)
+        {
+            fragmentTransaction.remove(mainFragment1);
+        }
 
     }
 }
