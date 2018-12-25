@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private Fragment currentFragment = new Fragment();
     private DrawerLayout drawerLayout;
     private FragmentManager fragmentManager;
@@ -73,20 +75,24 @@ public class MainActivity extends AppCompatActivity {
         }
         fragmentTransaction.replace(R.id.fragmentmain, mainFragment);
         fragmentTransaction.commit();
+        currentFragment = mainFragment;
         navigationView.setCheckedItem(R.id.acticle);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                fragmentTransaction = fragmentManager.beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.acticle:
                         if (mainFragment == null) {
                             mainFragment = new MainFragment();
+                            fragmentTransaction.add(R.id.fragmentmain,mainFragment);
                         }
                         showFragment(mainFragment);
                         break;
                     case R.id.acticle2:
                         if (mainFragment1 == null) {
                             mainFragment1 = new MainSecondFragment();
+                            fragmentTransaction.add(R.id.fragmentmain,mainFragment1);
                         }
                         showFragment(mainFragment1);
                         break;
@@ -101,14 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showFragment(Fragment fragment) {
         if (currentFragment != fragment) {
-            fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.hide(currentFragment);
             currentFragment = fragment;
-            if (!fragment.isAdded()) {
-                fragmentTransaction.replace(R.id.fragmentmain, fragment).show(fragment).commit();
-            } else {
-                fragmentTransaction.show(fragment).commit();
-            }
+            fragmentTransaction.show(fragment).commit();
+            Log.d(TAG, "showFragment: "+fragment.isVisible());
         }
     }
     // TODO: 18-12-25 这里的本地是随机的 每次show一个页面就会随机数据
