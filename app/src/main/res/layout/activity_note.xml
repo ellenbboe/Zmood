@@ -15,8 +15,8 @@
             android:id="@+id/activitynoteCollapsintoolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:contentScrim="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:contentScrim="#a9c3d6"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true">
             <ImageView
@@ -28,10 +28,10 @@
                 android:fitsSystemWindows="true"/>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/activitynotetoolbar"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin">
-
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>

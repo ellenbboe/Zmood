@@ -16,16 +16,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/nav_description"
-        android:text="王成套"
+        android:text="王小二"
         android:textColor="#fff"
         android:textSize="14sp"/>
     <TextView
         android:id="@+id/nav_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_alignParentBottom="true"
-        android:text="我是一条添狗"
+        android:text="来不及解释了,快上车"
         android:textColor="#fff"
         android:textSize="14sp"/>
 
