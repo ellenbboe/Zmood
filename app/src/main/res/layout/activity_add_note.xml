@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addnotelinearlyout"
+    android:background="@drawable/bluebackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNoteActivity"
+    android:orientation="vertical">
+<android.support.v7.widget.Toolbar
+    android:id="@+id/addnotetoolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#a9c3d6"
+    android:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+    app:layout_scrollFlags="scroll|enterAlways|snap">
+
+</android.support.v7.widget.Toolbar>
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        app:mtf_labelColor="#fff"
+        android:layout_height="wrap_content"
+        app:mtf_image="@drawable/title">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="标题"
+            android:textColor="#000000"/>
+    </com.github.florent37.materialtextfield.MaterialTextField>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="4dp"
+        android:layout_margin="20dp">
+    <EditText
+        android:id="@+id/addnotecontext"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="正文"
+        android:inputType="textMultiLine"
+        android:enabled="true"
+        android:padding="20dp"
+        android:gravity="top"
+        android:background="@null"
+        android:scrollbars="vertical"/>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

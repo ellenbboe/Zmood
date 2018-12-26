@@ -23,9 +23,10 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".NoteActivity" android:theme="@style/NoteActivityTheme">
-
-        </activity>
+        <activity
+            android:name=".NoteActivity"
+            android:theme="@style/NoteActivityTheme"></activity>
+        <activity android:name=".AddNoteActivity"></activity>
     </application>
 
 </manifest>
