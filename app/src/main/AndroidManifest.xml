@@ -28,5 +28,5 @@
             android:theme="@style/NoteActivityTheme"></activity>
         <activity android:name=".AddNoteActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

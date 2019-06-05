@@ -6,9 +6,9 @@
         android:icon="@drawable/save"
         android:title="保存"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/changimage"
-        android:icon="@drawable/changebackground"
-        android:title="修改配图"
-        app:showAsAction="ifRoom"/>
+    <!--<item-->
+        <!--android:id="@+id/changimage"-->
+        <!--android:icon="@drawable/changebackground"-->
+        <!--android:title="修改配图"-->
+        <!--app:showAsAction="ifRoom"/>-->
 </menu>

@@ -20,6 +20,7 @@ import com.example.s.zmood.entity.NoteEntity;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
+import static com.example.s.zmood.NoteActivity.NOTEDATE;
 
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
@@ -51,6 +52,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 Intent intent = new Intent(context,NoteActivity.class);
                 intent.putExtra(NoteActivity.IMAGEID,note.getImageResourceId());
                 intent.putExtra(NoteActivity.NOTETITLE,note.getTitle());
+                intent.putExtra(NoteActivity.NOTEDATE,note.getDate());
                 intent.putExtra(NoteActivity.NOTECONTEXT,note.getDescription());
                 context.startActivity(intent);
             }

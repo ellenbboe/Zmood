@@ -2,6 +2,7 @@ package com.example.s.zmood;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Fragment currentFragment = new Fragment();
     private DrawerLayout drawerLayout;
+//    MydatabaseHelper dbHelp = new MydatabaseHelper(this);
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private Fragment mainFragment, mainFragment1,mainFragment2,mainFragment3,mainFragment4,mainFragment5;
@@ -60,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         WelcomeActivity.instance.finish();//关掉欢迎页
 
         fragmentManager = getSupportFragmentManager();
